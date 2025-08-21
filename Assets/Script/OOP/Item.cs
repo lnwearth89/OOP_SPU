@@ -16,7 +16,6 @@ public class Item : Identity
 
     public virtual void Hit(Collider other)
     {
-        if (other.tag == "Player") {
             Debug.Log("Hit : " + GetInfo());
             Debug.Log($"{Name} is on X:{positionX} Y:{positionY}");
             if (player == null)
@@ -24,12 +23,15 @@ public class Item : Identity
                 Debug.LogWarning("Item hit by non-player object: " + other.name);
                 return;
             }
-        }
+        
         
     }
     
     private void OnTriggerEnter(Collider other)
     {
-        Hit(other);
+        if (other.tag == "Player")
+        {
+            Hit(other);
+        }
     }
 }

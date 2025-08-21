@@ -62,7 +62,15 @@ public class Identity : MonoBehaviour
             return _IdentityInFront.GetComponent<Identity>();
         }
     }
-   
+    protected float DistanFormPlayer { 
+        get {
+            if (player == null) {
+                return float.MaxValue; // No player found, return a large distance
+            }
+            return Vector3.Distance(transform.position, player.transform.position);
+        }
+    }
+         
     //protected MapGenerator mapGenerator;
     public string GetInfo() {
 
