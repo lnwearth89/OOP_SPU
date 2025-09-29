@@ -5,14 +5,14 @@ public class Trap : Stuff, IInteractable
     public Trap() {
         Name = "Trap";
     }
-    public string InteractionText => "E to deactivated Trap";
+    public bool isInteractable { get => isLock; set => isLock = value; }
     public int Damage = 10;
     public GameObject spikes;
     public void Interact(Player player)
     {
         _collider.enabled = false;
         spikes.SetActive(false);
-        isInteractable = false;
+        isLock = false;
         Debug.Log("Trap Inactivated!");
     }
 

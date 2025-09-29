@@ -17,7 +17,7 @@ public class Door : Stuff, IInteractable
     public float slideSpeed = 2f;
     public Transform door;
 
-    public string InteractionText => "[E] to use Door";
+    public bool isInteractable { get => isLock; set => isLock = value; }
 
     public void Interact(Player player)
     {

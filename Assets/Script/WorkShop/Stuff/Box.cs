@@ -6,8 +6,8 @@ public class Box : Stuff, IInteractable, Idestoryable
     public Box() {
         Name = "Box";
     }
-    public string InteractionText => "";
     public GameObject DropItem;
+    public bool isInteractable { get => isLock; set => isLock=value; }
 
     // สร้าง private backing fields สำหรับ health และ maxHealth
     private int _health;
@@ -24,6 +24,7 @@ public class Box : Stuff, IInteractable, Idestoryable
         get { return _maxHealth; }
         set { _maxHealth = value; }
     }
+
 
     Rigidbody rb;
     void Start()

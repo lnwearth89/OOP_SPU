@@ -5,7 +5,8 @@ public class Torch : Stuff, IInteractable
     public Torch() { 
         Name = "Torch";
     }
-    public string InteractionText => throw new System.NotImplementedException();
+    public bool isInteractable { get => isLock; set => isLock = value; }
+
     public GameObject Firelight;
     public bool isOn;
 

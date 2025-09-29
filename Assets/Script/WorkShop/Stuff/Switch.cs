@@ -7,7 +7,7 @@ public class Switch : Stuff, IInteractable
     public Switch() { 
         Name = "Switch";
     }
-    public string InteractionText => "[E] to use Switch";
+    public bool isInteractable { get => isLock; set => isLock = value; }
     [SerializeField]
     bool isOn = false;
     Animator animator;
@@ -30,7 +30,6 @@ public class Switch : Stuff, IInteractable
             Debug.Log("Switch is Off");
             IInterac?.Interact(player);
         }
-        Debug.Log(InteractionText);
     }
 }
 
