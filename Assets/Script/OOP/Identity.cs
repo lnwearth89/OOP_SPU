@@ -50,7 +50,7 @@ public class Identity : MonoBehaviour
     private GameObject _IdentityInFront;
     public Identity InFront {
         get {
-            Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 1f);
+            Physics.Raycast(transform.position, transform.forward , out RaycastHit hit, 2f);
             if (hit.collider != null) {
                 _IdentityInFront = hit.collider.gameObject;
             } else {
@@ -81,7 +81,7 @@ public class Identity : MonoBehaviour
     {
 
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, transform.position + transform.forward * 1f);
+        Gizmos.DrawLine(transform.position, transform.position + transform.forward * 2f);
 
     }
 

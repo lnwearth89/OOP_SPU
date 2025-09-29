@@ -15,12 +15,13 @@ public class Player : Character
         HandleInput();
         if (Input.GetMouseButtonDown(0))
         {
-            animator.SetTrigger("Attack");
-            Enemy e = InFront as Enemy;
-            if (e != null)
-            {
-                Attack(e);
-            }
+            var e = InFront as Idestoryable;
+            Attack(e);
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            IInteractable e = InFront as IInteractable;
+            Interact(e);
         }
     }
     private void HandleInput()
@@ -29,9 +30,22 @@ public class Player : Character
         float y = Input.GetAxis("Vertical");
         _inputDirection = new Vector3(x, 0, y);
     }
-    private void Attack(Enemy enemy) {
-        enemy.TakeDamage(Damage);
-        Debug.Log($"{Name} attacks {enemy.Name} for {Damage} damage.");
+    private void Interact(IInteractable interactable)
+    {
+        if (interactable != null)
+        {
+            interactable.Interact(this);
+        }
     }
- 
+    private void Attack(Idestoryable thing) {
+        animator.SetTrigger("Attack");
+        if (thing != null)
+        {
+            thing.TakeDamage(Damage);
+            Identity e = thing as Identity;
+            Debug.Log($"{Name} attacks {e.Name} for {Damage} damage.");
+        }
+    }
+   
+
 }

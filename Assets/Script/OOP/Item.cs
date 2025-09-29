@@ -10,8 +10,6 @@ public class Item : Identity
     {
         itemCollider = GetComponent<Collider>();
         itemCollider.isTrigger = true;
-        positionX = (int)transform.position.x;
-        positionY = (int)transform.position.y;
     }
 
     public virtual void Hit(Collider other)

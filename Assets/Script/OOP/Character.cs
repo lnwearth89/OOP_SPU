@@ -1,16 +1,17 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Character : Identity
+public class Character : Identity, Idestoryable
 {
+    
     int _health;
-    public int health
-    {
-        get { return _health; }
-        protected set { _health = Mathf.Clamp(value, 0, maxHealth); }
-    }
-    public int maxHealth = 100;
+
+    public int health { get => _health; set => _health = Mathf.Clamp(value, 0, maxHealth); }
+    public int maxHealth { get => _maxHealth; set => _maxHealth = value; }
+    [SerializeField]
+    private int _maxHealth = 100;
     public int Damage = 10;
+
     public float movementSpeed;
     protected Animator animator;
     protected Rigidbody rb;
@@ -26,6 +27,7 @@ public class Character : Identity
 
     public void TakeDamage(int amount) {
         health -= amount;
+        Debug.Log(Name + " take " + amount + " damage. Remaining health: " + health);
         if (health <= 0) { 
             Destroy(gameObject);
         }

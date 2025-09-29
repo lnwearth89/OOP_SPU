@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy : Character
+public class Enemy : Character 
 {
     [SerializeField]
     private float TimeToAttack = 3f;
