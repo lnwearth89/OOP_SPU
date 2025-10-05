@@ -20,7 +20,7 @@ public class PortableFan : ISwitchControl
     {
         _isOn = false;
         currentNumber = 0;
-        Console.WriteLine("Motor turned OFF. propeller stopped.");
+        Debug.Log("Motor turned OFF. propeller stopped.");
     }
 
     public void TurnOn()
@@ -37,15 +37,15 @@ public class PortableFan : ISwitchControl
         }
         else if (currentNumber == 1)
         {
-            Console.WriteLine("Motor turned ON. propeller Low / Speed 1.");
+            Debug.Log("Motor turned ON. propeller Low / Speed 1.");
         }
         else if (currentNumber == 2)
         {
-            Console.WriteLine("Motor turned ON. propeller Medium / Speed 2.");
+            Debug.Log("Motor turned ON. propeller Medium / Speed 2.");
         }
         else if (currentNumber == 3)
         {
-            Console.WriteLine("Motor turned ON. propeller High / Speed 3.");
+            Debug.Log("Motor turned ON. propeller High / Speed 3.");
         }
     }
 }

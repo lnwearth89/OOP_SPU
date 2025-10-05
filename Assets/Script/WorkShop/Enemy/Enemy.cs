@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class Enemy : Character
 {
+    protected enum State { idel, cheses, attack, death }
+
     [SerializeField]
     private float TimeToAttack = 1f;
-
+    protected State currentState = State.idel;
     protected float timer = 0f;
     private void Update()
     {

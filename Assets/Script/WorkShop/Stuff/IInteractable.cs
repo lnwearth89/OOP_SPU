@@ -7,4 +7,5 @@ public interface IInteractable
     // เมธอดที่ต้องมีเพื่อรองรับการโต้ตอบ
     void Interact(Player player);
 
+
 }

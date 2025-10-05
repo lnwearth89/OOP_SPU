@@ -12,6 +12,7 @@ public class Character : Identity, Idestoryable
     [SerializeField]
     private int _maxHealth = 100;
     public int Damage = 10;
+    public int Deffent = 10;
     public float movementSpeed;
     protected Animator animator;
     protected Rigidbody rb;
@@ -30,6 +31,7 @@ public class Character : Identity, Idestoryable
         }
     }
     public void TakeDamage(int amount) {
+        amount = Mathf.Clamp(amount- Deffent, 1, amount);
         health -= amount;
         if (health <= 0) { 
             Destroy(gameObject);

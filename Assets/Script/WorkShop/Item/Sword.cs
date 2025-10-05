@@ -10,10 +10,10 @@ public class Sword : Item
     public override void OnCollect(Player player)
     {
         base.OnCollect(player);
+        Vector3 swordUp = new Vector3(90, 0, 0);
+        itemcollider.enabled = false;
         transform.parent = player.RightHand;
         transform.localPosition = Vector3.zero;
-        itemcollider.enabled = false;
-        Vector3 swordUp = new Vector3(90, 0, 0);
         transform.localRotation = Quaternion.Euler(swordUp);
         player.Damage += Damage;
     }

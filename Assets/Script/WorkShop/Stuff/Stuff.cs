@@ -15,13 +15,13 @@ public abstract class Stuff : Identity
     }
     public void Update()
     {
-        if (GetDistanPlayer() < 2f && isLock)
+        if (GetDistanPlayer() >= 2f || !isLock)
         {
-            interactionTextUI.gameObject.SetActive(true);
+            interactionTextUI.gameObject.SetActive(false);
         }
         else
         {
-            interactionTextUI.gameObject.SetActive(false);
+            interactionTextUI.gameObject.SetActive(true);
         }
     }
 
