@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -27,6 +29,9 @@ public class Box : Stuff, IInteractable, Idestoryable
 
 
     Rigidbody rb;
+
+    public event Action<Idestoryable> OnDestory;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -46,6 +51,7 @@ public class Box : Stuff, IInteractable, Idestoryable
             Debug.Log(transform.position);
             GameObject g = Instantiate(DropItem, transform.position, Quaternion.identity);
             g.transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+            OnDestory?.Invoke(this);
             Destroy(gameObject);
         }
     }

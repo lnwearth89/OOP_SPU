@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -18,6 +20,8 @@ public class Character : Identity, Idestoryable
     protected Rigidbody rb;
     Quaternion newRotation;
 
+    public event Action<Idestoryable> OnDestory;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public override void SetUP()
     {
@@ -30,16 +34,18 @@ public class Character : Identity, Idestoryable
             Debug.LogError("Animator component not found on " + gameObject.name);
         }
     }
-    public void TakeDamage(int amount) {
+    public virtual void TakeDamage(int amount) {
         amount = Mathf.Clamp(amount- Deffent, 1, amount);
         health -= amount;
-        if (health <= 0) { 
+        if (health <= 0) {
+            OnDestory?.Invoke(this);
             Destroy(gameObject);
         }
     }
-    public void Heal(int amount)
+    public virtual void Heal(int amount)
     {
         health += amount;
+
     }
     protected virtual void Turn(Vector3 direction)
     {

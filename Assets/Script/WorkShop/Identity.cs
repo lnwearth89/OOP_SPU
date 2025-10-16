@@ -55,8 +55,7 @@ public class Identity : MonoBehaviour
     {
         get
         {
-            Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 1f);
-
+            RaycastHit hit = GetClosestInfornt();
             if (hit.collider != null)
             {
                 _IdentityInFront = hit.collider.gameObject;
@@ -70,6 +69,9 @@ public class Identity : MonoBehaviour
             return _IdentityInFront.GetComponent<Identity>();
         }
     }
+    // กำหนดรัศมีและระยะทางตามที่ใช้ในคุณสมบัติ InFront
+    float sphereRadius = 0.5f;
+    float maxDistance = 1f;
     private void Start()
     {
        SetUP();
@@ -85,11 +87,39 @@ public class Identity : MonoBehaviour
 
         return ("Name : " + Name +" x:" +positionX + " y:"+positionY);
     }
+
+    protected RaycastHit GetClosestInfornt() {
+
+        RaycastHit[] hits = Physics.SphereCastAll(transform.position, sphereRadius, transform.forward, maxDistance);
+
+        RaycastHit closestHit = new RaycastHit();
+        float minDistance = float.MaxValue;
+
+        foreach (RaycastHit hit in hits)
+        {
+            if (hit.collider.gameObject != gameObject && hit.collider.GetComponent<Identity>() != null)
+            {
+                if (hit.distance < minDistance)
+                {
+                    minDistance = hit.distance;
+                    closestHit = hit;
+                }
+            }
+        }
+        return closestHit;
+
+    }
     private void OnDrawGizmos()
     {
+        Vector3 endPosition = transform.position + transform.forward * maxDistance;
+        Gizmos.color = new Color(1f, 0.5f, 0f, 0.5f); 
+        Gizmos.DrawWireSphere(endPosition, sphereRadius);
 
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, transform.position + transform.forward * 1f);
+        if (_IdentityInFront != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(_IdentityInFront.transform.position, sphereRadius * 1.5f);
+        }
 
     }
 }
