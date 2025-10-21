@@ -87,4 +87,10 @@ public sealed class GameManager : MonoBehaviour
         }
         Debug.Log($"Game Paused: {isGamePaused}");
     }
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            TogglePause();
+        }
+    }
 }
