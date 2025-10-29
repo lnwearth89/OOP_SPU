@@ -4,7 +4,7 @@ using UnityEngine;
 public class Sheep 
 {
     // Instance Field
-    private int SheepNumber;
+    private int _SheepNumber;
     // Static Field ที่ใช้เก็บค่ารวมของแกะ
     private static int _totalSheepCount;
 
@@ -21,6 +21,11 @@ public class Sheep
         Debug.Log($"Starting population set to: {_initialPopulation}");
     }
 
+    public int SheepNumber
+    {
+        get { return _SheepNumber; }
+        // ไม่มี 'set' เพราะต้องการให้เป็นแบบอ่านอย่างเดียวภายนอก
+    }
     // 2. Static Property: ให้การเข้าถึงค่า Static Field อย่างปลอดภัยและควบคุมได้
     public static int TotalSheepCount
     {
@@ -30,19 +35,19 @@ public class Sheep
     // Instance Constructor
     public Sheep(int n)
     {
-        this.SheepNumber = n;
+        this._SheepNumber = n;
         _totalSheepCount++; // ทุกครั้งที่สร้าง Object จะเพิ่มตัวนับ Static
-        Debug.Log($"Sheep created in pen {SheepNumber}.");
+        Debug.Log($"Sheep created in pen {_SheepNumber}.");
     }
 
     // Instance Method
     public int AskNumber()
     {
-        return SheepNumber;
+        return _SheepNumber;
     }
     public void SetNumber(int n)
     {
-        SheepNumber = n;
+        _SheepNumber = n;
     }
     // Static Method (เหมือนเดิม)
     public static void RemoveSheep(int count)
@@ -56,6 +61,6 @@ public class Sheep
     }
     public void Jump()
     {
-        Debug.Log($"Sheep {SheepNumber} is jumping! Sheep got Gravity {FarmUtils.Gravity}");
+        Debug.Log($"Sheep {_SheepNumber} is jumping! Sheep got Gravity {FarmUtils.Gravity}");
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(SphereCollider))]
-public class Item : Identity
+public abstract class Item : Identity
 {
     private Collider _collider;
     protected Collider itemcollider {
